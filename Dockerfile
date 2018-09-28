@@ -10,8 +10,8 @@ ENV DOTNET_SYSTEM_GLOBALIZATION_INVARIANT=false \
 # Install .NET Core SDK
 ENV DOTNET_SDK_VERSION 2.1.402
 ENV ASPNETCORE_PKG_VERSION 2.1.1
-ENV IMAGE_DATE 2018-09-17
-ENV IMAGE_NUM 000
+ENV IMAGE_DATE 2018-09-28
+ENV IMAGE_NUM 001
 
 RUN apk add --no-cache --virtual .build-deps \
         openssl \
@@ -22,6 +22,7 @@ RUN apk add --no-cache --virtual .build-deps \
     && tar -C /usr/share/dotnet -xzf dotnet.tar.gz \
     && ln -s /usr/share/dotnet/dotnet /usr/bin/dotnet \
     && rm dotnet.tar.gz \
+    && apk upgrade apk \
     && apk del .build-deps \
     && mkdir warmup \
     && cd warmup \
